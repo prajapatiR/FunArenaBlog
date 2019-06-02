@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#"> <h1>FunArenaBlog</h1> </a>
+        <a class="navbar-brand" href="/"> <h1>FunArenaBlog</h1> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,6 +21,12 @@
             <% if current_user %>
               <li class="nav-item active">
                 <%= link_to 'Log Out', destroy_user_session_path, class: 'nav-link', method: :delete %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to 'List Users', list_users_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to 'Edit Profile', edit_user_registration_path, class: 'nav-link' %>
               </li>
             <% else %>
               <li class="nav-item active">
@@ -34,12 +40,12 @@
         </div>
       </div>
     </nav>
-    <div class="container" style="margin-top: 8%">
+    <div class="container" style="margin-top: 8%; margin-bottom: 5%">
       <%= yield %>
     </div>
-    <footer class="py-5 bg-dark">
+    <footer class=" bg-dark fixed-bottom">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; FunArenaBlog 2019</p>
+        <p class="my-0 text-center text-white">Copyright &copy; FunArenaBlog 2019</p>
       </div>
       <!-- /.container -->
     </footer>

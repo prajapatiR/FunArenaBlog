@@ -10,18 +10,27 @@
     <% @posts.each do |post| %>
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="/assets/1.jpg" alt="">
+          <% if post.photos.blank? == false %>
+            <%= image_tag(post.photos.first.image.url) %>
+          <% else %>
+            <img class="card-img-top" src="/assets/1.jpg" alt="">
+          <% end %>
           <div class="card-body">
             <h4 class="card-title"><%= truncate(post.title, length: 65) %></h4>
             <p class="card-text"><%= truncate(post.body, length: 65) %></p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <%= link_to 'Find Out More', show_post_path(id: post.id), class: "btn btn-primary" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+
+  <div class="digg_pagination d-flex justify-content-center">
+    <%= will_paginate @posts  %>
+  </div>
+  <br>
   <!-- /.row -->
 
   </div>

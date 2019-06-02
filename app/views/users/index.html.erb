@@ -1,0 +1,25 @@
+<% @users.each do |user| %>
+  <div style="margin: 20px">
+    <div class="card flex-row flex-wrap ml-20">
+      <div class="card-header border-0">
+        <% if user.photo %>
+          <%= image_tag user.photo.image.url, height: '120px', width: '120px' %>
+        <% else %>
+          <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+        <% end %>
+
+      </div>
+      <div class="card-block px-2">
+        <h4 class="card-title"><%= user.name %></h4>
+        <% bio = user.bio.blank? ? "" : user.bio  %>
+        <p class="card-text">(<%= truncate(bio, length: 70) %>)</p>
+
+        <%= link_to 'View Profile', show_user_path(id: user.id), class: "btn btn-primary" %>
+      </div>
+      <div class="w-100"></div>
+    </div>
+  </div>
+<% end %>
+<div class="digg_pagination d-flex justify-content-center">
+  <%= will_paginate @posts  %>
+</div>

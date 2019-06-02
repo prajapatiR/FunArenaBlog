@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12 lead">User profile<hr></div>
+        </div>
+        <div class="row">
+		<div class="col-md-4 text-center">
+            <img class="img-circle avatar avatar-original" style="-webkit-user-select:none; display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="only-bottom-margin"><%= @user.name %></h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <span class="text-muted">Email:</span> <%= @user.email %><br>
+                <span class="text-muted">Last updated on: </span> <%= @user.updated_at.strftime("%B %d %Y") %> <br>
+                <small class="text-muted">Created: <%= @user.created_at.strftime("%B %d %Y")  %></small>
+                <br>
+                <br>
+                <span class="text-muted">Bio:</span> <%= @user.bio %><br><br>
+              </div>
+              <div class="col-md-6">
+                <div class="activity-mini">
+                  <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                </div>
+                <div class="activity-mini">
+                  <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <!-- Blog Entries Column -->
+  <div class="col-md-8">
+
+    <!-- Blog Post -->
+    <% if @posts.blank? == false %>
+      <% @posts.each do |post| %>        <!-- Blog Post -->
+          <div class="card mb-4">
+            <% if post.photos.blank? == false %>
+             <%= image_tag (post.photos.first.image.url) %>
+           <% else %>
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <% end %>
+            <div class="card-body">
+              <h2 class="card-title"><%= post.title %></h2>
+              <p class="card-text"><%= truncate(post.body, lenght: 65) %></p>
+              <div class="card-footer">
+                <%= link_to 'Find Out More', show_post_path(id: post.id), class: "btn btn-primary" %>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on January 1, 2017 by
+              <a href="#">Start Bootstrap</a>
+            </div>
+          </div>
+          <!-- Blog Post -->
+
+      <% end %>
+    <% else %>
+      There are no posts from this user
+    <% end %>
+
+    <!-- Blog Post -->
+
+
+  </div>
+
+  <!-- Sidebar Widgets Column -->
+  <div class="col-md-4">
+
+    <!-- Search Widget -->
+    <!-- Categories Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Categories</h5>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">Web Design</a>
+              </li>
+              <li>
+                <a href="#">HTML</a>
+              </li>
+              <li>
+                <a href="#">Freebies</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#">JavaScript</a>
+              </li>
+              <li>
+                <a href="#">CSS</a>
+              </li>
+              <li>
+                <a href="#">Tutorials</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side Widget -->
+    <div class="card my-4">
+      <h5 class="card-header">Side Widget</h5>
+      <div class="card-body">
+        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+      </div>
+    </div>
+
+  </div>
+
+</div>
